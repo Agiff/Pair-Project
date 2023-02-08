@@ -1,0 +1,27 @@
+[
+  {
+    "email": "admin@admin.com",
+    "password": "admin",
+    "role": "admin"
+  },
+  {
+    "email": "user@user.com",
+    "password": "user",
+    "role": "user"
+  },
+  {
+    "email": "agif@agif.com",
+    "password": "agif",
+    "role": "agif"
+  },
+  {
+    "email": "fahri@fahri.com",
+    "password": "fahri",
+    "role": "fahri"
+  },
+  {
+    "email": "syarian@syarian.com",
+    "password": "syarian",
+    "role": "syarian"
+  }
+]
