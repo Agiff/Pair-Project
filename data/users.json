@@ -12,16 +12,16 @@
   {
     "email": "agif@agif.com",
     "password": "agif",
-    "role": "agif"
+    "role": "user"
   },
   {
     "email": "fahri@fahri.com",
     "password": "fahri",
-    "role": "fahri"
+    "role": "user"
   },
   {
     "email": "syarian@syarian.com",
     "password": "syarian",
-    "role": "syarian"
+    "role": "user"
   }
 ]
