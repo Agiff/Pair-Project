@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Product</title>
+</head>
+<body>
+  <h1>Add Product</h1>
+  <form action="/seller/product/add" method="post">
+    <p>
+      <label for="product-name-input">Name</label>
+      <input type="text" name="name" id="product-name-input">
+    </p>
+    <p>
+      <label for="product-price-input">Price</label>
+      <input type="number" name="price" id="product-price-input">
+    </p>
+    <p>
+      <label for="product-image-input">Image</label>
+      <input type="text" name="image" id="product-image-input">
+    </p>
+    <p>
+      <label for="product-stock-input">Stock</label>
+      <input type="number" name="stock" id="product-stock-input">
+    </p>
+    <p>
+      <label for="product-brand-input">Brand</label>
+      <input type="text" name="brand" id="product-brand-input">
+    </p>
+    <p>
+      <label for="product-category-input">Category</label>
+      <select name="CategoryId">
+        <option value="" selected disabled>Choose...</option>
+        <% categories.forEach(({id, name}) => { %>
+          <option value="<%= id %>"><%= name %></option>
+        <% }) %>
+      </select>
+    </p>
+    <p>
+      <label for="product-description-input">Description</label>
+    </p>
+    <textarea name="description" id="product-description-input" cols="30" rows="10"></textarea>
+    <br><br>
+    <button type="submit">Add Product</button>
+  </form>
+</body>
+</html>

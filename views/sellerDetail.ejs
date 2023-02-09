@@ -17,9 +17,12 @@
   <p>Phone Number: <%= phoneNumber %></p>
   <p>Address: <%= address %></p>
   <p>Balance: <%= balance %></p>
+  <a href="/seller/product/add"><button>Add Product</button></a>
+  <br>
   <% if (deleted) { %>
     <p style="color: red;"><%= deleted %></p>
   <% } %>
+  <br>
   <table border="1">
     <thead>
         <tr>
