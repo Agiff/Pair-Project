@@ -57,7 +57,7 @@
                     <td><%= el.Category.dataValues.name %></td>
                     <td><%= brand %></td>
                     <td><%= currencyFormat(price) %></td>
-                    <td><a href="linkToSellerPage">Showroom <%= brand %></a></td>
+                    <td><a href="/?search=byBrand&param=<%= brand %>">Showroom <%= brand %></a></td>
                     <td>
                         <a href="/product/<%= id %>/buy">Buy</a>
                     </td>
