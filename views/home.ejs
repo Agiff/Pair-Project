@@ -10,26 +10,43 @@
     <%- include('partials/_navbar', { userId, role }) %>
     <%- include('partials/_footer', { title: 'JualMobil.com' }) %> 
     <br>
+    <% //console.log(getHome) %>
+    <p>Click on product name to show details.</p>
+    <form action="" method="get">
+        <select name="search" id="">
+            <option value="" selected disabled>Choose search by...</option>
+            <option value="byName">Search by Name</option>
+            <option value="byBrand">Search by Brand</option>
+        </select>
+        <input type="text" name="param">
+        <input type="submit" value="Search">
+    </form>
     <table border="1">
         <thead>
             <tr>
                 <td>No.</td>
                 <td>Image</td>
                 <td>Name</td>
+                <td>Type</td>
+                <td>Brand</td>
                 <td>Price</td>
+                <td>Seller</td>
                 <td>Action</td>
             </tr>
         </thead>
         <tbody>
             <% getHome.forEach((el, index) => { %>
-                <% let {id, name, description, price, image, CategoryId, UserId} = el.dataValues %>
+                <% let {id, name, description, price, brand, image, CategoryId, UserId} = el.dataValues %>
                 <tr>
                     <td><%= ++index %></td>
-                    <td><%= image %></td>
-                    <td><%= name %></td>
+                    <td><img src="<%= image %>" alt=""></td>
+                    <td><a href="/product/<%= id %>"><%= name %></a></td>
+                    <td><%= el.Category.dataValues.name %></td>
+                    <td><%= brand %></td>
                     <td><%= currencyFormat(price) %></td>
+                    <td><a href="linkToSellerPage">Showroom <%= brand %></a></td>
                     <td>
-                        <a href=""></a>
+                        <a href="/product/<%= id %>/buy">Buy</a>
                     </td>
                 </tr>
             <% }) %>

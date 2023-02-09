@@ -1,17 +1,18 @@
 const bcrypt = require('bcryptjs');
 
-const { User, Product } = require('../models');
+const { User, Product, Category } = require('../models');
 const { currencyFormat } = require('../helper');
+const { Op, where } = require('sequelize');
 
 class UserController {
-  static getHome(req, res) {
+  static getHome(req, res) { 
     const { userId, role } = req.session;
-
-    Product.findAll({
-        include: {
-            model: User
-        }
-    })
+    let {search, param} = req.query
+    let include = {model: Category}
+    let where = {};
+    if(search === `byName`) where = {name: { [Op.iLike] : `%${param}%`}}
+    if(search === `byBrand`) where = {brand: { [Op.iLike] : `%${param}%`}}
+    Product.findAll({include, where})
         .then(getHome => res.render('home', { getHome, currencyFormat, userId, role }))
         .catch(err => res.send(err))
   }
