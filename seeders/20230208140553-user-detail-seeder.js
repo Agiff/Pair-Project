@@ -17,6 +17,7 @@ module.exports = {
     const userDetails = JSON.parse(fs.readFileSync('./data/userDetails.json'))
     .map(el => {
       el.createdAt = el.updatedAt = new Date();
+      delete el.id;
       return el;
     })
     return queryInterface.bulkInsert('UserDetails', userDetails, {});

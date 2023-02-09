@@ -8,11 +8,20 @@ class SellerController {
     const { sellerId } = req.params;
     const { userId } = req.session;
     if(userId !== +sellerId) return res.redirect(`/login?error=You dont have access to that page.`)
-    UserDetail.findOne({
-      where: { UserId: sellerId }
+    User.findOne({
+      where: { id: sellerId },
+      include: [
+        {
+          model: UserDetail
+        },
+        {
+          model: Product,
+          include: [Category]
+        }
+      ]
     })
       .then(seller => {
-        res.render('sellerDetail', { seller });
+        res.render('sellerDetail', { seller, currencyFormat });
       })
       .catch(err => res.send(err));
   }

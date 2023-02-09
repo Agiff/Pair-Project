@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs');
 
-const { User, Product, Category } = require('../models');
+const { User, UserDetail, Product, Category } = require('../models');
 const { currencyFormat } = require('../helper');
 const { Op } = require('sequelize');
 
@@ -25,17 +25,32 @@ class UserController {
   }
 
   static showRegister(req, res) {
-    res.render('register');
+    const { errors } = req.query;
+    res.render('register', { errors });
   }
 
   static createUser(req, res) {
-    const { email, password, role } = req.body;
+    const { 
+      email, password, role,
+      firstName, lastName, phoneNumber, birthDate, address
+    } = req.body;
 
     User.create({ email, password, role })
       .then(createdUser => {
-        res.redirect('/login');
+        const { id } = createdUser;
+        return UserDetail.create({ firstName, lastName, phoneNumber, birthDate, address, UserId: id })
       })
-      .catch(err => res.send(err));
+      .then(() => res.redirect('/login'))
+      .catch(err => {
+        if (err.name === 'SequelizeValidationError') {
+          const errors = err.errors.map(({message}) => {
+            return message;
+          })
+          res.redirect(`/register?errors=${errors}`)
+        } else {
+          res.send(err);
+        }
+      });
   }
 
   static showLogin(req, res) {
