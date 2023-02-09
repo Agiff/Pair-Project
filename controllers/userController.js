@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs');
 
-const { User, UserDetail, Product, Category } = require('../models');
+const { User, UserDetail, Product, Category, Cart } = require('../models');
 const { currencyFormat } = require('../helper');
 const { Op } = require('sequelize');
 
@@ -32,16 +32,22 @@ class UserController {
   static createUser(req, res) {
     const { email, password, role } = req.body;
 
+    let user;
+
     User.create({ email, password, role })
       .then(createdUser => {
+        user = createdUser;
         return UserDetail.create({
           firstName: '-',
           lastName: '-',
           phoneNumber: '-',
           birthDate: new Date(),
           address: '-',
-          UserId: createdUser.id
+          UserId: user.id
         })
+      })
+      .then(() => {
+        return Cart.create({ UserId: user.id })
       })
       .then(() => res.redirect('/login'))
       .catch(err => {
