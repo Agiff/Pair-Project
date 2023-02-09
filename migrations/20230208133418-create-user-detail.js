@@ -29,8 +29,11 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
+      picture: {
+        type: Sequelize.STRING,
+      },
       balance: {
-        type: Sequelize.INTEGER
+        type: Sequelize.BIGINT
       },
       UserId: {
         type: Sequelize.INTEGER,

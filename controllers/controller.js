@@ -2,7 +2,11 @@ const {User, UserDetail, Product, Category} = require('../models')
 
 class Controller {
     static getHome(req, res) {
-        Product.findAll()
+        Product.findAll({
+            include: {
+                model: User
+            }
+        })
             .then(getHome => res.render('home', {getHome}))
             .catch(err => res.send(err))
     }
