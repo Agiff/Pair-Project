@@ -14,7 +14,9 @@ module.exports = {
       allowNull: false,
       references: {
         model: 'Categories'
-      }
+      },
+      onDelete: 'cascade',
+      onUpdate: 'cascade'
     });
   },
 

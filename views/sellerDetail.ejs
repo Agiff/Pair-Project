@@ -17,6 +17,12 @@
   <p>Phone Number: <%= phoneNumber %></p>
   <p>Address: <%= address %></p>
   <p>Balance: <%= balance %></p>
+  <a href="/seller/product/add"><button>Add Product</button></a>
+  <br>
+  <% if (deleted) { %>
+    <p style="color: red;"><%= deleted %></p>
+  <% } %>
+  <br>
   <table border="1">
     <thead>
         <tr>
@@ -31,7 +37,7 @@
         </tr>
     </thead>
     <tbody>
-        <% seller.Products.forEach((el, index) => { %>
+        <% products.forEach((el, index) => { %>
             <% let {id, name, description, price, brand, image, CategoryId, UserId} = el.dataValues %>
             <tr>
                 <td><%= ++index %></td>
@@ -42,7 +48,8 @@
                 <td><%= currencyFormat(price) %></td>
                 <td><a href="/?search=byBrand&param=<%= brand %>">Showroom <%= brand %></a></td>
                 <td>
-                    <a href="/product/<%= id %>/buy">Buy</a>
+                    <a href="/seller/product/<%= id %>/edit">Edit</a>
+                    <a href="/seller/product/<%= id %>/delete">Delete</a>
                 </td>
             </tr>
         <% }) %>
