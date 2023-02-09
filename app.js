@@ -1,13 +1,12 @@
-var express = require('express');
-var app = express();
-var PORT = 3000;
-const router = require('./routes')
+const express = require('express')
+const router = require('./routers')
+const app = express()
+const port = 3000
 
-app.set('view engine', 'ejs')
-app.use(express.urlencoded({extended:false}));
-app.use(router)
+app.set('view engine', 'ejs');
+app.use(express.urlencoded({extended: false}));
+app.use(router);
 
-app.listen(PORT, function(err){
-    if (err) console.log(err);
-    console.log("Server listening on PORT", PORT);
-});
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`)
+})
