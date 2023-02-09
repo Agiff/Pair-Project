@@ -1,7 +1,11 @@
 <nav>
   <label>JualMobil.com</label>
   <a href="/"><button>Home</button></a>
-  <a href="/login"><button>Sign In</button></a>
-  <a href="/register"><button>Sign Up</button></a>
-  <a href="/logout"><button>Logout</button></a>
+  <% if (userId) { %>
+    <a href="/<%= role.toLowerCase() %>/<%= userId %>"><button>User Profile</button></a>
+    <a href="/logout"><button>Logout</button></a>
+  <% } else { %>
+    <a href="/login"><button>Sign In</button></a>
+    <a href="/register"><button>Sign Up</button></a>
+  <% } %> 
 </nav>

@@ -5,7 +5,8 @@ const { currencyFormat } = require('../helper');
 const { Op, where } = require('sequelize');
 
 class UserController {
-  static getHome(req, res) {
+  static getHome(req, res) { 
+    const { userId, role } = req.session;
     let {search, param, type, sortBy} = req.query
     let include = {model: Category}
     let where = {};
@@ -19,7 +20,7 @@ class UserController {
     if(order) statement = {include, where, order};
     else statement = {include, where}
     Product.findAll(statement)
-        .then(getHome => res.render('home', { getHome, currencyFormat }))
+        .then(getHome => res.render('home', { getHome, currencyFormat, userId, role }))
         .catch(err => res.send(err))
   }
 
@@ -32,7 +33,6 @@ class UserController {
 
     User.create({ email, password, role })
       .then(createdUser => {
-        console.log(createdUser);
         res.redirect('/login');
       })
       .catch(err => res.send(err));

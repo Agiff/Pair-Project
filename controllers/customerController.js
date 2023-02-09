@@ -16,6 +16,18 @@ class CustomerController {
       .then(getTransaction => res.render('transaction', {getTransaction}))
       .catch(err => res.send(err))
   }
+  
+  static customerProfile(req, res) {
+    const { customerId } = req.params;
+    
+    UserDetail.findOne({
+      where: { UserId: customerId }
+    })
+      .then(customer => {
+        res.render('customerDetail', { customer });
+      })
+      .catch(err => res.send(err));
+  }
 }
 
 module.exports = CustomerController;

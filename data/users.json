@@ -7,21 +7,26 @@
   {
     "email": "user@user.com",
     "password": "user",
-    "role": "user"
+    "role": "Customer"
   },
   {
     "email": "agif@agif.com",
     "password": "agif",
-    "role": "user"
+    "role": "Seller"
   },
   {
     "email": "fahri@fahri.com",
     "password": "fahri",
-    "role": "user"
+    "role": "Seller"
   },
   {
     "email": "syarian@syarian.com",
     "password": "syarian",
-    "role": "user"
+    "role": "Customer"
+  },
+  {
+    "email": "zidhan@zidhan.com",
+    "password": "zidhan",
+    "role": "admin"
   }
 ]
