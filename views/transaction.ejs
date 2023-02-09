@@ -9,11 +9,11 @@
 <body>
     <%- include('partials/_navbar', { userId, role }) %>
     <%- include('partials/_footer', { title: 'JualMobil.com' }) %> 
-    <% console.log(getTransaction) %>
     <% if (!getTransaction.Products.length) { %>
         <p style="color:red">Anda belum melakukan transaksi apapun.</p>
         <p style="color:red">(<a href="/">Klik disini</a>) untuk membeli mobil.</p>
     <% } else { %>
+    <p>Here is you purchase history:</p>
     <table border="1">
         <thead>
             <tr>

@@ -3,8 +3,14 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class cart extends Model {}
-  cart.init({
+  class Transaction extends Model {
+    static associate(models) {
+      // define association here
+      Transaction.belongsTo(models.Product)
+      Transaction.belongsTo(models.User)
+    }
+  }
+  Transaction.init({
     UserId: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -20,5 +26,5 @@ module.exports = (sequelize, DataTypes) => {
     timestamps: false,
     modelName: 'Transaction',
   });
-  return cart;
+  return Transaction;
 };
