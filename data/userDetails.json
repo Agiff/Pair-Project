@@ -1,7 +1,7 @@
 [{
   "id": 1,
-  "first_name": "Collen",
-  "last_name": "Simmonite",
+  "firstName": "Collen",
+  "lastName": "Simmonite",
   "age": 42,
   "phoneNumber": "3905940654",
   "address": "9 Memorial Hill",
@@ -10,8 +10,8 @@
   "UserId": 1
 }, {
   "id": 2,
-  "first_name": "Rivkah",
-  "last_name": "Hammant",
+  "firstName": "Rivkah",
+  "lastName": "Hammant",
   "age": 21,
   "phoneNumber": "5506922546",
   "address": "5806 Manley Hill",
@@ -20,8 +20,8 @@
   "UserId": 2
 }, {
   "id": 3,
-  "first_name": "Jilleen",
-  "last_name": "McMeeking",
+  "firstName": "Jilleen",
+  "lastName": "McMeeking",
   "age": 42,
   "phoneNumber": "1166647432",
   "address": "5 Clove Trail",
@@ -30,8 +30,8 @@
   "UserId": 3
 }, {
   "id": 4,
-  "first_name": "Tony",
-  "last_name": "McCoy",
+  "firstName": "Tony",
+  "lastName": "McCoy",
   "age": 51,
   "phoneNumber": "1494591503",
   "address": "8465 Grim Place",
@@ -40,8 +40,8 @@
   "UserId": 4
 }, {
   "id": 5,
-  "first_name": "Melania",
-  "last_name": "Comi",
+  "firstName": "Melania",
+  "lastName": "Comi",
   "age": 19,
   "phoneNumber": "5411921825",
   "address": "966 Eliot Alley",
