@@ -29,10 +29,11 @@ class SellerController {
 
   static sellerShowAddProduct(req, res) {
     const { userId } = req.session;
+    const { errors } = req.query;
 
     Category.findAll()
       .then(categories => {
-        res.render('addProduct', { categories, userId });
+        res.render('addProduct', { categories, userId, errors });
       })
       .catch(err => res.send(err));
   }
@@ -43,7 +44,16 @@ class SellerController {
 
     Product.create({ name, price, image, stock, brand, CategoryId, description, UserId: userId })
       .then(() => res.redirect(`/seller/${userId}`))
-      .catch(err => res.send(err));
+      .catch(err => {
+        if (err.name === 'SequelizeValidationError') {
+          const errors = err.errors.map(({message}) => {
+            return message;
+          })
+          res.redirect(`/seller/product/add?errors=${errors}`)
+        } else {
+          res.send(err);
+        }
+      });
   }
 
   static sellerShowEditProduct(req, res) {
