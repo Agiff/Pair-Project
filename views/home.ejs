@@ -8,26 +8,33 @@
 </head>
 <body>
     <% console.log(getHome) %>
+    <p>Click Product name to show detail.</p>
     <table border="1">
         <thead>
             <tr>
                 <td>No.</td>
                 <td>Image</td>
                 <td>Name</td>
+                <td>Type</td>
+                <td>Brand</td>
                 <td>Price</td>
+                <td>Seller</td>
                 <td>Action</td>
             </tr>
         </thead>
         <tbody>
             <% getHome.forEach((el, index) => { %>
-                <% let {id, name, description, price, image, CategoryId, UserId} = el.dataValues %>
+                <% let {id, name, description, price, brand, image, CategoryId, UserId} = el.dataValues %>
                 <tr>
                     <td><%= ++index %></td>
-                    <td><%= image %></td>
-                    <td><%= name %></td>
-                    <td><%= price %></td>
+                    <td><img src="<%= image %>" alt=""></td>
+                    <td><a href="/product/<%= id %>"><%= name %></a></td>
+                    <td><%= brand %></td>
+                    <td><%= el.Category.dataValues.name %></td>
+                    <td><%= formatRupiah(price) %></td>
+                    <td><a href="/">Showroom <%= brand %></a></td>
                     <td>
-                        <a href=""></a>
+                        <a href="/product/<%= id %>/buy">Buy</a>
                     </td>
                 </tr>
             <% }) %>
