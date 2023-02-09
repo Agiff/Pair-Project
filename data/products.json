@@ -5,7 +5,8 @@
   "stock": 6,
   "brand": "Fird",
   "description": "Morbi non quam nec dui luctus rutrum. Nulla tellus. In sagittis dui vel nisl.",
-  "CategoryId": 5
+  "CategoryId": 5,
+  "UserId": 3
 }, {
   "name": "3500 Club Coupe",
   "price": 89926211,
@@ -13,7 +14,8 @@
   "stock": 9,
   "brand": "Volkswigin",
   "description": "Suspendisse potenti. Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum.",
-  "CategoryId": 2
+  "CategoryId": 2,
+  "UserId": 4
 }, {
   "name": "3 Series",
   "price": 5779075,
@@ -21,7 +23,8 @@
   "stock": 4,
   "brand": "Volkswigin",
   "description": "Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. ",
-  "CategoryId": 4
+  "CategoryId": 4,
+  "UserId": 3
 }, {
   "name": "Skyhawk",
   "price": 52073426,
@@ -29,7 +32,8 @@
   "stock": 7,
   "brand": "Volkswigin",
   "description": "Proin risus. Praesent lectus. Vestibulum quam sapien, varius ut, blandit non, interdum in, ante.",
-  "CategoryId": 5
+  "CategoryId": 5,
+  "UserId": 3
 }, {
   "name": "STS",
   "price": 39001049,
@@ -37,7 +41,8 @@
   "stock": 9,
   "brand": "Volkswigin",
   "description": "Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. ",
-  "CategoryId": 4
+  "CategoryId": 4,
+  "UserId": 4
 }, {
   "name": "LeSabre",
   "price": 36758932,
@@ -45,7 +50,8 @@
   "stock": 2,
   "brand": "Fird",
   "description": "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae. ",
-  "CategoryId": 4
+  "CategoryId": 4,
+  "UserId": 3
 }, {
   "name": "Silverado 3500",
   "price": 58777864,
@@ -53,7 +59,8 @@
   "stock": 8,
   "brand": "Fird",
   "description": "Donec dapibus. Duis at velit eu est congue elementum. ",
-  "CategoryId": 5
+  "CategoryId": 5,
+  "UserId": 4
 }, {
   "name": "Rendezvous",
   "price": 40106494,
@@ -61,7 +68,8 @@
   "stock": 7,
   "brand": "Volkswigin",
   "description": "Maecenas ut massa quis augue luctus tincidunt.",
-  "CategoryId": 1
+  "CategoryId": 1,
+  "UserId": 3
 }, {
   "name": "Safari",
   "price": 93321378,
@@ -69,7 +77,8 @@
   "stock": 2,
   "brand": "Hondi",
   "description": "Nulla ut erat id mauris vulputate elementum. Nullam varius. ",
-  "CategoryId": 1
+  "CategoryId": 1,
+  "UserId": 4
 }, {
   "name": "Town & Country",
   "price": 33669857,
@@ -77,5 +86,6 @@
   "stock": 9,
   "brand": "Hondi",
   "description": "Nullam molestie nibh in lectus. Pellentesque at nulla.",
-  "CategoryId": 4
+  "CategoryId": 4,
+  "UserId": 3
 }]
