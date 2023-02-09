@@ -18,13 +18,14 @@ class CustomerController {
   }
 
   static customerProfile(req, res) {
-    const { customerId } = req.params;
-    
+    const {customerId} = req.params;
+    const { userId, role } = req.session;
+    if(userId !== +customerId) return res.redirect(`/login?error=You dont have access to that page.`)
     UserDetail.findOne({
-      where: { UserId: customerId }
+      where: { UserId: userId }
     })
       .then(customer => {
-        res.render('customerDetail', { customer, userId:customerId });
+        res.render('customerDetail', { customer, userId, role});
       })
       .catch(err => res.send(err));
   }

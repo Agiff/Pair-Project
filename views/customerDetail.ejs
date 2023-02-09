@@ -7,6 +7,8 @@
   <title>Customer Profile</title>
 </head>
 <body>
+  <%- include('partials/_navbar', { userId, role }) %>
+  <%- include('partials/_footer', { title: 'JualMobil.com' }) %> 
   <h1>Customer Profile</h1>
   <% const { firstName, lastName, age, phoneNumber, address, balance, UserId, picture } = customer %>
   <h2>Welcome, <%= firstName %> <%= lastName %>!</h2>
