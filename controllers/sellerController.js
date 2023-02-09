@@ -1,12 +1,19 @@
+const { Op } = require("sequelize");
+
 const { User, UserDetail, Product, Category } = require('../models');
 const { currencyFormat } = require('../helper');
 
 class SellerController {
-  static sellerHome(req, res) {
-    console.log('welcome seller');
-    UserDetail.findAll()
-        .then(sellerHome => console.log(sellerHome))
-        .catch(err => res.send(err))
+  static sellerProfile(req, res) {
+    const { sellerId } = req.params;
+
+    UserDetail.findOne({
+      where: { UserId: sellerId }
+    })
+      .then(seller => {
+        res.render('sellerDetail', { seller });
+      })
+      .catch(err => res.send(err));
   }
 }
 
