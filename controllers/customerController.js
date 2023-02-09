@@ -25,7 +25,7 @@ class CustomerController {
       where: { UserId: userId }
     })
       .then(customer => {
-        res.render('customerDetail', { customer, userId, role});
+        res.render('customerDetail', { customer, userId, role, currencyFormat });
       })
       .catch(err => res.send(err));
   }
@@ -38,6 +38,7 @@ class CustomerController {
       .then(getCart => {
         const {id} = getCart
         console.log(id, +ProductId)
+        console.log(getCart);
         return CartProduct.create({ProductId : +ProductId, CartId:id})
       })
       .then(() => res.redirect('/'))
@@ -89,6 +90,23 @@ class CustomerController {
     .catch(err => {
       if(err.name === `custom`) return res.redirect(`/customer/${userId}/cart?errors=${err.msg}`)
       else res.send(err)})
+  }
+
+  static showUserTopUp(req, res) {
+    const { customerId } = req.params;
+    res.render('topup', { customerId });
+  }
+
+  static userTopUp(req, res) {
+    const { topup } = req.body;
+    const { customerId } = req.params;
+
+    UserDetail.increment('balance', {
+      where: { UserId: customerId },
+      by: topup
+    })
+      .then(() => res.redirect(`/customer/${customerId}`))
+      .catch(err => res.send(err));
   }
 }
 
