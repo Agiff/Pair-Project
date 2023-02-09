@@ -13,12 +13,25 @@
     <% //console.log(getHome) %>
     <p>Click on product name to show details.</p>
     <form action="" method="get">
-        <select name="search" id="">
+        <select name="type">
+            <option value="" selected disabled>Type..</option>
+            <option value="ASC">Ascending</option>
+            <option value="DESC">Descending</option>
+        </select>
+        <select name="sortBy">
+            <option value="" selected disabled>Sort By...</option>
+            <option value="name">Name</option>
+            <option value="price">Price</option>
+        </select>
+        <input type="submit" value="Sort">
+    </form>
+    <form action="" method="get">
+        <select name="search">
             <option value="" selected disabled>Choose search by...</option>
             <option value="byName">Search by Name</option>
             <option value="byBrand">Search by Brand</option>
         </select>
-        <input type="text" name="param">
+        <input type="text" name="param" placeholder="Enter your search here...">
         <input type="submit" value="Search">
     </form>
     <table border="1">
