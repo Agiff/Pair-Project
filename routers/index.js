@@ -1,11 +1,18 @@
-const router = require('express').Router()
-const Controller = require('../controllers');
+const router = require('express').Router();
+const UserController = require('../controllers/UserController');
+const { isLoggedIn } = require('../middlewares');
+const customerRoutes = require('./customer');
+const sellerRoutes = require('./seller');
 
-router.get('/', Controller.getHome)
+router.get('/', UserController.getHome);
 
-router.get('/register', Controller.showRegister);
-router.post('/register', Controller.createUser);
-router.get('/login', Controller.showLogin);
-router.post('/login', Controller.login);
+router.get('/register', UserController.showRegister);
+router.post('/register', UserController.createUser);
+router.get('/login', UserController.showLogin);
+router.post('/login', UserController.login);
+router.get('/logout', UserController.logout);
+
+router.use(customerRoutes);
+router.use(isLoggedIn, sellerRoutes);
 
 module.exports = router;

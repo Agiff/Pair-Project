@@ -7,8 +7,10 @@
     <title>Home</title>
 </head>
 <body>
-    <% console.log(getHome) %>
-    <p>Click Product name to show detail.</p>
+    <%- include('partials/_navbar') %>
+    <%- include('partials/_footer', { title: 'JualMobil.com' }) %> 
+    <br>
+    <% //console.log(getHome) %>
     <table border="1">
         <thead>
             <tr>
@@ -27,12 +29,9 @@
                 <% let {id, name, description, price, brand, image, CategoryId, UserId} = el.dataValues %>
                 <tr>
                     <td><%= ++index %></td>
-                    <td><img src="<%= image %>" alt=""></td>
-                    <td><a href="/product/<%= id %>"><%= name %></a></td>
-                    <td><%= brand %></td>
-                    <td><%= el.Category.dataValues.name %></td>
-                    <td><%= formatRupiah(price) %></td>
-                    <td><a href="/">Showroom <%= brand %></a></td>
+                    <td><%= image %></td>
+                    <td><%= name %></td>
+                    <td><%= currencyFormat(price) %></td>
                     <td>
                         <a href="/product/<%= id %>/buy">Buy</a>
                     </td>
