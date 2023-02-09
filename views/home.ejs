@@ -7,12 +7,10 @@
     <title>Home</title>
 </head>
 <body>
-    <nav>
-      <a href="/login">Sign In</a>
-      <a href="/register">Sign Up</a>
-    </nav>
+    <%- include('partials/_navbar') %>
+    <%- include('partials/_footer', { title: 'JualMobil.com' }) %> 
     <br>
-    <% console.log(getHome) %>
+    <% //console.log(getHome) %>
     <table border="1">
         <thead>
             <tr>
@@ -30,7 +28,7 @@
                     <td><%= ++index %></td>
                     <td><%= image %></td>
                     <td><%= name %></td>
-                    <td><%= price %></td>
+                    <td><%= currencyFormat(price) %></td>
                     <td>
                         <a href=""></a>
                     </td>

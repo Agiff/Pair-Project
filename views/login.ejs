@@ -7,9 +7,10 @@
   <title>Login</title>
 </head>
 <body>
+  <%- include('partials/_footer', { title: 'JualMobil.com' }) %> 
   <h1>Login</h1>
-  <% if (authFailed) { %>
-    <p style="color: red;"><%= authFailed %></p>
+  <% if (error) { %>
+    <p style="color: red;"><%= error %></p>
   <% } %>
   <form action="/login" method="post">
     <p>
@@ -21,6 +22,7 @@
       <input type="password" name="password" id="password-input">
     </p>
     <button type="submit">Sign In</button>
+    <a href="/register">SIgn Up</a>
     <a href="/">Back</a>
   </form>
 </body>
