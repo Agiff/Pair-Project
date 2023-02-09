@@ -10,27 +10,35 @@
     <%- include('partials/_navbar') %>
     <%- include('partials/_footer', { title: 'JualMobil.com' }) %> 
     <br>
-    <% //console.log(getHome) %>
+    <% console.log(getHome) %>
+    <p>Click on product name to show details.</p>
+    
     <table border="1">
         <thead>
             <tr>
                 <td>No.</td>
                 <td>Image</td>
                 <td>Name</td>
+                <td>Type</td>
+                <td>Brand</td>
                 <td>Price</td>
+                <td>Seller</td>
                 <td>Action</td>
             </tr>
         </thead>
         <tbody>
             <% getHome.forEach((el, index) => { %>
-                <% let {id, name, description, price, image, CategoryId, UserId} = el.dataValues %>
+                <% let {id, name, description, price, brand, image, CategoryId, UserId} = el.dataValues %>
                 <tr>
                     <td><%= ++index %></td>
-                    <td><%= image %></td>
-                    <td><%= name %></td>
+                    <td><img src="<%= image %>" alt=""></td>
+                    <td><a href="/product/<%= id %>"><%= name %></a></td>
+                    <td><%= el.Category.dataValues.name %></td>
+                    <td><%= brand %></td>
                     <td><%= currencyFormat(price) %></td>
+                    <td><a href="linkToSellerPage">Showroom <%= brand %></a></td>
                     <td>
-                        <a href=""></a>
+                        <a href="/product/<%= id %>/buy">Buy</a>
                     </td>
                 </tr>
             <% }) %>
