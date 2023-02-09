@@ -8,28 +8,31 @@ class SellerController {
     const { sellerId } = req.params;
     const { deleted } = req.query;
 
+    let seller;
+
     User.findOne({
       where: { id: sellerId },
-      include: [
-        {
-          model: UserDetail
-        },
-        {
-          model: Product,
-          include: [Category]
-        }
-      ]
+      include: [UserDetail]
     })
-      .then(seller => {
-        res.render('sellerDetail', { seller, currencyFormat, deleted });
+      .then(currentSeller => {
+        seller = currentSeller;
+        return Product.findAll({
+          where: { UserId: sellerId },
+          include: [Category]
+        })
+      })
+      .then(products => {
+        res.render('sellerDetail', { seller, currencyFormat, deleted, products });
       })
       .catch(err => res.send(err));
   }
 
   static sellerShowAddProduct(req, res) {
+    const { userId } = req.session;
+
     Category.findAll()
       .then(categories => {
-        res.render('addProduct', { categories });
+        res.render('addProduct', { categories, userId });
       })
       .catch(err => res.send(err));
   }
@@ -45,12 +48,23 @@ class SellerController {
 
   static sellerShowEditProduct(req, res) {
     const { productId } = req.params;
+    const { userId } = req.session;
 
-    res.render('editProduct');
+    let product;
+
+    Product.findByPk(productId)
+      .then(selectedProduct => {
+        product = selectedProduct;
+        return Category.findAll();
+      })
+      .then(categories => {
+        res.render('editProduct', { product, categories, userId });
+      })
+      .catch(err => res.send(err));
   }
   
   static sellerUpdateProduct(req, res) {
-    console.log(req.body);
+    // console.log(req.body);
   }
 
   static sellerDeleteProduct(req, res) {

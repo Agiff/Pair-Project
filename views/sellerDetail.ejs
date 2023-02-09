@@ -37,7 +37,7 @@
         </tr>
     </thead>
     <tbody>
-        <% seller.Products.forEach((el, index) => { %>
+        <% products.forEach((el, index) => { %>
             <% let {id, name, description, price, brand, image, CategoryId, UserId} = el.dataValues %>
             <tr>
                 <td><%= ++index %></td>
