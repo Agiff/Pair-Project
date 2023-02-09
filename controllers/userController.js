@@ -6,7 +6,7 @@ const { Op } = require('sequelize');
 
 class UserController {
   static getHome(req, res) { 
-    const { userId, role } = req.session;
+    const { userId, role, email } = req.session;
     let {search, param, type, sortBy} = req.query
     let include = {model: Category}
     let where = {};
@@ -87,6 +87,7 @@ class UserController {
 
         req.session.userId = user.id;
         req.session.role = user.role;
+        req.session.email = user.email;
         res.redirect('/');
       })
       .catch(err => res.send(err));
@@ -114,7 +115,7 @@ class UserController {
   static updateUserDetail(req, res) {
     const { firstName, lastName, phoneNumber, birthDate, address } = req.body;
     const { userId } = req.session;
-
+    console.log(userId)
     UserDetail.update({ firstName, lastName, phoneNumber, birthDate, address }, {
       where: { UserId: userId }
     })

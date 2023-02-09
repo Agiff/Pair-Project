@@ -1,7 +1,10 @@
 const router = require('express').Router();
 const CustomerController = require('../controllers/customerController');
 const { isLoggedIn, isCustomer } = require('../middlewares');
+const bodyParser = require('body-parser')
+router.use(bodyParser.json())
 
+router.post('/email', CustomerController.sentMail)
 router.get('/product/:productId', CustomerController.productDetail);
 router.get('/customer/:customerId', isLoggedIn, isCustomer, CustomerController.customerProfile);
 router.get('/customer/:customerId/transaction', CustomerController.getTransaction)

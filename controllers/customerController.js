@@ -2,6 +2,7 @@ const { User, UserDetail, Product, Category, Transaction, Cart, CartProduct } = 
 const { currencyFormat } = require('../helper');
 const { isCustomer, isLoggedIn } = require('../middlewares');
 const { Op } = require('sequelize');
+const nodemailer = require("nodemailer");
 
 class CustomerController {
   static productDetail(req, res) {
@@ -92,11 +93,31 @@ class CustomerController {
       else res.send(err)})
   }
 
-  static showUserTopUp(req, res) {
-    const { customerId } = req.params;
-    res.render('topup', { customerId });
-  }
-
+  static sentMail(req, res){
+     let transporter = nodemailer.createTransport({
+        host: "smtp.ethereal.email",
+        port: 587,
+        secure: false, // true for 465, false for other ports
+        auth: {
+          user: 'shanny.armstrong@ethereal.email',
+          pass: '9VJjjSEV6R2hTmyAM8'
+      }
+    });
+    let {email} = req.session
+    const msg = {
+        from: '"The Exapress App" <theExpressApp@example.com>', // sender address
+        to: `${email}`, // list of receivers
+        subject: "Promotion and Special Discount, JualMobil", // Subject line
+        text: "Here is your cupon code for next purchase, you need to buy in offline store to be able to reedem it.", // plain text body
+    }
+    if(!email) return res.redirect ('/login?error=You session is ended, please login again.')
+    transporter.sendMail(msg)
+    .then(succes => {
+        console.log("Message sent: %s", succes.messageId);
+        console.log("Preview URL: %s", nodemailer.getTestMessageUrl(succes));
+        res.redirect('/')
+    })
+    .catch(err => res.send(err))
   static userTopUp(req, res) {
     const { topup } = req.body;
     const { customerId } = req.params;
