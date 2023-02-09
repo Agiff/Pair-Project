@@ -1,16 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
 </head>
 <body>
-  <nav>
-    <a href="/login">Sign In</a>
-    <a href="/register">Sign Up</a>
-  </nav>
-  <h1>Home</h1>
+    <% console.log(getHome) %>
+    <table border="1">
+        <thead>
+            <tr>
+                <td>No.</td>
+                <td>Image</td>
+                <td>Name</td>
+                <td>Price</td>
+                <td>Action</td>
+            </tr>
+        </thead>
+        <tbody>
+            <% getHome.forEach((el, index) => { %>
+                <% let {id, name, description, price, image, CategoryId, UserId} = el.dataValues %>
+                <tr>
+                    <td><%= ++index %></td>
+                    <td><%= image %></td>
+                    <td><%= name %></td>
+                    <td><%= price %></td>
+                    <td>
+                        <a href=""></a>
+                    </td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
 </body>
 </html>

@@ -1,17 +1,17 @@
 [
   {
-    "name": "Clothing"
+    "name": "Sedan"
   },
   {
-    "name": "Shoes"
+    "name": "SUV"
   },
   {
-    "name": "Electronics"
+    "name": "Pickup"
   },
   {
-    "name": "Books"
+    "name": "Van"
   },
   {
-    "name": "Food"
+    "name": "Sport"
   }
 ]
