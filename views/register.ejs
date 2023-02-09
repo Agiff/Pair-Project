@@ -11,6 +11,14 @@
   <h1>Register</h1>
   <form action="/register" method="post">
     <p>
+      <label for="firstName-input">First Name</label>
+      <input type="text" name="firstName" id="firstName-input">
+    </p>
+    <p>
+      <label for="lastName-input">Last Name</label>
+      <input type="text" name="lastName" id="lastName-input">
+    </p>
+    <p>
       <label for="email-input">Email</label>
       <input type="email" name="email" id="email-input">
     </p>
@@ -19,7 +27,19 @@
       <input type="password" name="password" id="password-input">
     </p>
     <p>
-      <label for="role-select"></label>
+      <label for="phoneNumber-input">Phone Number</label>
+      <input type="text" name="phoneNumber" id="phoneNumber-input">
+    </p>
+    <p>
+      <label for="birthDate-input">Date of Birth</label>
+      <input type="date" name="birthDate" id="birthDate-input">
+    </p>
+    <p>
+      <label for="address-input">Address Number</label>
+      <input type="text" name="address" id="address-input">
+    </p>
+    <p>
+      <label for="role-select">Role</label>
       <select name="role" id="role-select">
         <option value="" selected disabled>Choose...</option>
         <% ['Customer', 'Seller'].forEach(el => { %>

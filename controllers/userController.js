@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs');
 
-const { User, Product, Category } = require('../models');
+const { User, UserDetail, Product, Category } = require('../models');
 const { currencyFormat } = require('../helper');
 const { Op, where } = require('sequelize');
 
@@ -29,12 +29,17 @@ class UserController {
   }
 
   static createUser(req, res) {
-    const { email, password, role } = req.body;
+    const { 
+      email, password, role,
+      firstName, lastName, phoneNumber, birthDate, address
+    } = req.body;
 
     User.create({ email, password, role })
       .then(createdUser => {
-        res.redirect('/login');
+        const { id } = createdUser;
+        return UserDetail.create({ firstName, lastName, phoneNumber, birthDate, address, UserId: id })
       })
+      .then(() => res.redirect('/login'))
       .catch(err => res.send(err));
   }
 

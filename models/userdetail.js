@@ -31,5 +31,9 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'UserDetail',
   });
+  UserDetail.beforeCreate((instance, option) => {
+    instance.picture = 'http://dummyimage.com/50x50.png/cc0000/ffffff';
+    instance.balance = 0;
+  })
   return UserDetail;
 };
