@@ -7,11 +7,20 @@ class SellerController {
   static sellerProfile(req, res) {
     const { sellerId } = req.params;
 
-    UserDetail.findOne({
-      where: { UserId: sellerId }
+    User.findOne({
+      where: { id: sellerId },
+      include: [
+        {
+          model: UserDetail
+        },
+        {
+          model: Product,
+          include: [Category]
+        }
+      ]
     })
       .then(seller => {
-        res.render('sellerDetail', { seller });
+        res.render('sellerDetail', { seller, currencyFormat });
       })
       .catch(err => res.send(err));
   }
