@@ -11,6 +11,12 @@
     <%- include('partials/_footer', { title: 'JualMobil.com' }) %> 
     <br>
     <% //console.log(userId, role); %>
+    <form action="/email" method="post">
+        <p style="color:green">
+            We have special offer for you, click here to receive special offer via email!
+        <input type="submit"value="Get-discount">
+        </p>
+    </form>
     <p>Click on product name to show details.</p>
     <form action="" method="get">
         <select name="type">
@@ -68,9 +74,5 @@
         </tbody>
     </table>
     <br>
-    <form action="/email" method="post">
-        <input type="text" value="<%= {"email": "bigtest@gmail.test"} %>">
-        <input type="submit" name="" id="">
-    </form>
 </body>
 </html>
