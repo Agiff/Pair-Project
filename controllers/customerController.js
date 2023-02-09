@@ -6,7 +6,11 @@ const nodemailer = require("nodemailer");
 
 class CustomerController {
   static productDetail(req, res) {
-    res.send('asd')
+    const { userId, role } = req.session;
+    let {productId} = req.params
+    Product.findByPk(productId)
+      .then(getProduct => res.render('productDetail', {getProduct, userId, role, currencyFormat}))
+      .catch(err => res.send(err))
   }
 
   static getTransaction(req, res) {
