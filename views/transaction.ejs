@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction</title>
+</head>
+<body>
+    <%- include('partials/_navbar', { userId, role }) %>
+    <%- include('partials/_footer', { title: 'JualMobil.com' }) %> 
+    <% console.log(getTransaction) %>
+    <% if (!getTransaction.Products.length) { %>
+        <p style="color:red">Anda belum melakukan transaksi apapun.</p>
+        <p style="color:red">(<a href="/">Klik disini</a>) untuk membeli mobil.</p>
+    <% } else { %>
+    <table border="1">
+        <thead>
+            <tr>
+                <td>No.</td>
+                <td>Image</td>
+                <td>Name</td>
+                <td>Type</td>
+                <td>Brand</td>
+                <td>Price</td>
+                <td>Seller</td>
+            </tr>
+        </thead>
+        <tbody>
+            <% getTransaction.Products.forEach((el, index) => { %>
+                <% let {id, name, description, price, brand, image, CategoryId, UserId} = el.dataValues %>
+                <tr>
+                    <td><%= ++index %></td>
+                    <td><img src="<%= image %>" alt=""></td>
+                    <td><a href="/product/<%= id %>"><%= name %></a></td>
+                    <td><%= el.Category.dataValues.name %></td>
+                    <td><%= brand %></td>
+                    <td><%= currencyFormat(price) %></td>
+                    <td>Showroom <%= brand %></td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+    <% } %>
+</body>
+</html>
