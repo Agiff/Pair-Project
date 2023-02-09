@@ -8,11 +8,14 @@ class CustomerController {
 
   static customerProfile(req, res) {
     const { customerId } = req.params;
-    // User.findOne({
-    //   where: {
-    //     id: 
-    //   }
-    // })a
+    
+    UserDetail.findOne({
+      where: { UserId: customerId }
+    })
+      .then(customer => {
+        res.render('customerDetail', { customer });
+      })
+      .catch(err => res.send(err));
   }
 }
 

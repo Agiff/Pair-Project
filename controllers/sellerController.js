@@ -7,9 +7,11 @@ class SellerController {
   static sellerProfile(req, res) {
     const { sellerId } = req.params;
 
-    UserDetail.findAll()
+    UserDetail.findOne({
+      where: { UserId: sellerId }
+    })
       .then(seller => {
-        console.log(seller);
+        res.render('sellerDetail', { seller });
       })
       .catch(err => res.send(err));
   }
