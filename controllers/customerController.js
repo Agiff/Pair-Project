@@ -1,7 +1,7 @@
 const { User, UserDetail, Product, Category } = require('../models');
 const bcrypt = require('bcryptjs');
 
-class Controller {
+class CustomerController {
   static getHome(req, res) {
     Product.findAll({
         include: {
@@ -47,6 +47,10 @@ class Controller {
       })
       .catch(err => res.send(err));
   }
+
+  static productDetail(req, res) {
+    res.send('asd')
+  }
 }
 
-module.exports = Controller;
+module.exports = CustomerController;
