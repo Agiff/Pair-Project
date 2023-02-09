@@ -4,36 +4,39 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Transaction</title>
+    <title>My Cart</title>
 </head>
 <body>
     <%- include('partials/_navbar', { userId, role }) %>
     <%- include('partials/_footer', { title: 'JualMobil.com' }) %> 
-    <% if (!getTransaction.Products.length) { %>
-        <p style="color:red">Anda belum melakukan transaksi apapun.</p>
-        <p style="color:red">(<a href="/">Klik disini</a>) untuk membeli mobil.</p>
+    <% if (errors) { %>
+     <p style="color:red"><%= errors %></p>
+    <% } %>
+    <p>Balance : <%= currencyFormat(getCart.dataValues.User.dataValues.UserDetail.dataValues.balance) %></p>
+    <% let totalPrice = 0; %>
+    <% if (!getCart.Products.length) { %>
+        <p style="color:red">Hi, your cart is empty.</p>
     <% } else { %>
-    <p>Here is you purchase history:</p>
     <table border="1">
         <thead>
             <tr>
                 <td>No.</td>
                 <td>Image</td>
                 <td>Name</td>
-                <td>Type</td>
                 <td>Brand</td>
                 <td>Price</td>
                 <td>Seller</td>
             </tr>
         </thead>
         <tbody>
-            <% getTransaction.Products.forEach((el, index) => { %>
-                <% let {id, name, description, price, brand, image, CategoryId, UserId} = el.dataValues %>
+            <% console.log(getCart.dataValues) %>
+            <% getCart.Products.forEach((el, index) => { %>
+                <% let {id, name, description, price, brand, image, CategoryId, UserId} = el %>
+                <% totalPrice+=price %>
                 <tr>
                     <td><%= ++index %></td>
                     <td><img src="<%= image %>" alt=""></td>
                     <td><a href="/product/<%= id %>"><%= name %></a></td>
-                    <td><%= el.Category.dataValues.name %></td>
                     <td><%= brand %></td>
                     <td><%= currencyFormat(price) %></td>
                     <td>Showroom <%= brand %></td>
@@ -41,6 +44,10 @@
             <% }) %>
         </tbody>
     </table>
+    <p>
+        Total Price : <%= currencyFormat(totalPrice) %>
+        (<a href="/customer/<%= userId %>/cart/<%= getCart.dataValues.id %>/pay?totalPrice=<%= totalPrice %>">Pay</a>)
+    </p>
     <% } %>
 </body>
 </html>

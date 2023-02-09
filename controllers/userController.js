@@ -2,7 +2,7 @@ const bcrypt = require('bcryptjs');
 
 const { User, UserDetail, Product, Category } = require('../models');
 const { currencyFormat } = require('../helper');
-const { Op, where } = require('sequelize');
+const { Op } = require('sequelize');
 
 class UserController {
   static getHome(req, res) { 
