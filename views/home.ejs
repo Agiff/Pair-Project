@@ -10,9 +10,17 @@
     <%- include('partials/_navbar') %>
     <%- include('partials/_footer', { title: 'JualMobil.com' }) %> 
     <br>
-    <% console.log(getHome) %>
+    <% //console.log(getHome) %>
     <p>Click on product name to show details.</p>
-    
+    <form action="" method="get">
+        <select name="search" id="">
+            <option value="" selected disabled>Choose search by...</option>
+            <option value="byName">Search by Name</option>
+            <option value="byBrand">Search by Brand</option>
+        </select>
+        <input type="text" name="param">
+        <input type="submit" value="Search">
+    </form>
     <table border="1">
         <thead>
             <tr>
