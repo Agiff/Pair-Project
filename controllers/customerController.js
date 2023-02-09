@@ -1,6 +1,7 @@
-const { User, UserDetail, Product, Category } = require('../models');
+const { User, UserDetail, Product, Category, Transaction } = require('../models');
 const { currencyFormat } = require('../helper');
 const { isCustomer } = require('../middlewares');
+const { Op } = require('sequelize');
 
 class CustomerController {
   static productDetail(req, res) {
@@ -8,15 +9,14 @@ class CustomerController {
   }
 
   static getTransaction(req, res) {
-    console.log(req.session.role)
-    let include = {model:Product}
-    let where = {id : req.session.userId}
-    console.log(where)
-    User.findByPk({include, where})
-      .then(getTransaction => res.render('transaction', {getTransaction}))
+    const { userId, role } = req.session;
+    if(role !== `Customer`) res.redirect(`/login?error=Please login using customer account, before accessing transaction.`)
+    let include = [{model:Product, include:{model:Category}, order:[['name', 'DESC']]}]
+    User.findByPk(req.session.userId,{include})
+      .then(getTransaction => res.render('transaction', {getTransaction, userId, role, currencyFormat}))
       .catch(err => res.send(err))
   }
-  
+
   static customerProfile(req, res) {
     const { customerId } = req.params;
     
@@ -24,7 +24,7 @@ class CustomerController {
       where: { UserId: customerId }
     })
       .then(customer => {
-        res.render('customerDetail', { customer });
+        res.render('customerDetail', { customer, userId:customerId });
       })
       .catch(err => res.send(err));
   }
