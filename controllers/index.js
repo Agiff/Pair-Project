@@ -37,6 +37,15 @@ class Controller {
       })
       .catch(err => res.send(err));
   }
+  static getHome(req, res) {
+    Product.findAll({
+        include: {
+            model: Category
+        }
+    })
+        .then(getHome => res.render('home', {getHome, formatRupiah}))
+        .catch(err => res.send(err))
+}
 }
 
 module.exports = Controller;
