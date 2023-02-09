@@ -10,7 +10,10 @@
     <%- include('partials/_navbar', { userId, role }) %>
     <%- include('partials/_footer', { title: 'JualMobil.com' }) %> 
     <% if (errors) { %>
-     <p style="color:red"><%= errors %></p>
+    <p style="color:red">
+        <%= errors %>
+        <a href="/customer/<%= userId %>/topup"><button>Top Up</button></a>
+    </p>
     <% } %>
     <p>Balance : <%= currencyFormat(getCart.dataValues.User.dataValues.UserDetail.dataValues.balance) %></p>
     <% let totalPrice = 0; %>

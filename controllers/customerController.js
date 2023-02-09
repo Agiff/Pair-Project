@@ -38,6 +38,7 @@ class CustomerController {
       .then(getCart => {
         const {id} = getCart
         console.log(id, +ProductId)
+        console.log(getCart);
         return CartProduct.create({ProductId : +ProductId, CartId:id})
       })
       .then(() => res.redirect('/'))
