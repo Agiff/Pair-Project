@@ -17,6 +17,9 @@
   <p>Phone Number: <%= phoneNumber %></p>
   <p>Address: <%= address %></p>
   <p>Balance: <%= balance %></p>
+  <% if (deleted) { %>
+    <p style="color: red;"><%= deleted %></p>
+  <% } %>
   <table border="1">
     <thead>
         <tr>
@@ -42,7 +45,8 @@
                 <td><%= currencyFormat(price) %></td>
                 <td><a href="/?search=byBrand&param=<%= brand %>">Showroom <%= brand %></a></td>
                 <td>
-                    <a href="/product/<%= id %>/buy">Buy</a>
+                    <a href="/seller/product/<%= id %>/edit">Edit</a>
+                    <a href="/seller/product/<%= id %>/delete">Delete</a>
                 </td>
             </tr>
         <% }) %>
