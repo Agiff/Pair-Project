@@ -118,6 +118,13 @@ class CustomerController {
         res.redirect('/')
     })
     .catch(err => res.send(err))
+  }
+  
+  static showUserTopUp(req, res) {
+    const { customerId } = req.params;
+    res.render('topup', { customerId });
+  }
+
   static userTopUp(req, res) {
     const { topup } = req.body;
     const { customerId } = req.params;
