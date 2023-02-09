@@ -7,12 +7,19 @@ const { Op, where } = require('sequelize');
 class UserController {
   static getHome(req, res) { 
     const { userId, role } = req.session;
-    let {search, param} = req.query
+    let {search, param, type, sortBy} = req.query
     let include = {model: Category}
     let where = {};
+    let order;
+    let statement;
+    let tipeSort = `ASC`
+    if(type) tipeSort = type
+    if(sortBy) order = [[`${sortBy}`, tipeSort]]
     if(search === `byName`) where = {name: { [Op.iLike] : `%${param}%`}}
     if(search === `byBrand`) where = {brand: { [Op.iLike] : `%${param}%`}}
-    Product.findAll({include, where})
+    if(order) statement = {include, where, order};
+    else statement = {include, where}
+    Product.findAll(statement)
         .then(getHome => res.render('home', { getHome, currencyFormat, userId, role }))
         .catch(err => res.send(err))
   }
