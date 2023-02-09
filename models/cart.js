@@ -18,6 +18,10 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'CartId'
       })
     }
+
+    static getAllRelation(userId, Product, User, UserDetail){
+     return Cart.findOne({where: {UserId:+userId}, include:[{model:Product, order:[['name']]}, {model:User, include:{model:UserDetail}}]})
+    }
   }
   Cart.init({
     UserId: DataTypes.INTEGER

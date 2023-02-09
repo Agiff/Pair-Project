@@ -38,8 +38,6 @@ class CustomerController {
     Cart.findOne({where: {UserId:+userId}})
       .then(getCart => {
         const {id} = getCart
-        console.log(id, +ProductId)
-        console.log(getCart);
         return CartProduct.create({ProductId : +ProductId, CartId:id})
       })
       .then(() => res.redirect('/'))
@@ -58,27 +56,35 @@ class CustomerController {
   static getPayCart(req, res) {
     const { userId, role } = req.session;
     let {totalPrice} = req.query
-    Cart.findOne({where: {UserId:+userId}, include:[{model:Product, order:[['name']]}, {model:User, include:{model:UserDetail}}]})
+
+    Cart.getAllRelation(userId, Product, User, UserDetail)
     .then(getCart => {
       let {User, Products} = getCart.dataValues
       let {UserDetail} = User.dataValues
       let {balance} = UserDetail.dataValues
-      console.log(`========================================`)
-      let arrIdProduct = Products.map(el => {
-        let {id} = el.dataValues
-        return id
-      })
       if(+totalPrice === 0) throw {name:`custom`, msg: `Nothing to buy, add product first`}
       else if(balance >= +totalPrice){
-        console.log(`HEREEEEEEEEEE`)
          return UserDetail.increment({balance: -totalPrice})
       }
       else {
         throw {name:`custom`, msg: `Balance not enough`}
       }
     })
-    .then(arr => {
-      console.log(`Deleteeeee`, arr)
+    .then(success => Cart.getAllRelation(userId, Product, User, UserDetail))
+    .then(success => {
+      let {Products} = success.dataValues
+      return Products.map(el => el.id)
+    })
+    .then(arrProducts => {
+      return Product.increment({stock: -1}, {
+        where: {
+          id : {
+            [Op.in] : arrProducts
+          }
+        }
+      })
+    })
+    .then(success => {
       let {cartId} = req.params
       return CartProduct.destroy({
         where: {
@@ -86,8 +92,7 @@ class CustomerController {
         }
       })
     })
-    .then()
-    .then(success=> res.redirect(`/Customer/${userId}/cart`))
+    .then(success => res.redirect(`/Customer/${userId}/cart`))
     .catch(err => {
       if(err.name === `custom`) return res.redirect(`/customer/${userId}/cart?errors=${err.msg}`)
       else res.send(err)})
