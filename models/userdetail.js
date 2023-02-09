@@ -17,69 +17,19 @@ module.exports = (sequelize, DataTypes) => {
     get age() {
       return new Date().getFullYear() - this.birthDate.getFullYear();
     }
+
+    get formatYear() {
+      const test = JSON.stringify(this.birthDate).split('T')[0].slice(1);
+      console.log(test);
+      return JSON.stringify(this.birthDate).split('T')[0].slice(1);
+    }
   }
   UserDetail.init({
-    firstName: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notNull: {
-          msg: 'First Name cannot be null'
-        },
-        notEmpty: {
-          msg: 'First Name cannot be empty'
-        }
-      }
-    },
-    lastName: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notNull: {
-          msg: 'Last Name cannot be null'
-        },
-        notEmpty: {
-          msg: 'Last Name cannot be empty'
-        }
-      }
-    },
-    birthDate: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      validate: {
-        notNull: {
-          msg: 'Date of Birth cannot be null'
-        },
-        notEmpty: {
-          msg: 'Date of Birth cannot be empty'
-        }
-      }
-    },
-    phoneNumber: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true,
-      validate: {
-        notNull: {
-          msg: 'Phone Number cannot be null'
-        },
-        notEmpty: {
-          msg: 'Phone Number cannot be empty'
-        }
-      }
-    },
-    address: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notNull: {
-          msg: 'Address cannot be null'
-        },
-        notEmpty: {
-          msg: 'Address cannot be empty'
-        }
-      }
-    },
+    firstName: DataTypes.STRING,
+    lastName: DataTypes.STRING,
+    birthDate: DataTypes.DATE,
+    phoneNumber: DataTypes.STRING,
+    address: DataTypes.STRING,
     balance: DataTypes.BIGINT,
     UserId: DataTypes.INTEGER,
     picture: DataTypes.STRING

@@ -30,15 +30,18 @@ class UserController {
   }
 
   static createUser(req, res) {
-    const { 
-      email, password, role,
-      firstName, lastName, phoneNumber, birthDate, address
-    } = req.body;
+    const { email, password, role } = req.body;
 
     User.create({ email, password, role })
       .then(createdUser => {
-        const { id } = createdUser;
-        return UserDetail.create({ firstName, lastName, phoneNumber, birthDate, address, UserId: id })
+        return UserDetail.create({
+          firstName: '-',
+          lastName: '-',
+          phoneNumber: '-',
+          birthDate: new Date(),
+          address: '-',
+          UserId: createdUser.id
+        })
       })
       .then(() => res.redirect('/login'))
       .catch(err => {
@@ -88,6 +91,29 @@ class UserController {
       if (err) return res.send(err);
       res.redirect('/login');
     })
+  }
+
+  static showEditUserDetail(req, res) {
+    const { userId, role } = req.session;
+    
+    UserDetail.findOne({
+      where: { UserId: userId }
+    })
+      .then(user => {
+        res.render('editUserDetail', { user, userId, role });
+      })
+      .catch(err => res.send(err));
+  }
+
+  static updateUserDetail(req, res) {
+    const { firstName, lastName, phoneNumber, birthDate, address } = req.body;
+    const { userId } = req.session;
+
+    UserDetail.update({ firstName, lastName, phoneNumber, birthDate, address }, {
+      where: { UserId: userId }
+    })
+      .then(() => res.redirect(`/seller/${userId}`))
+      .catch(err => res.send(err));
   }
 }
 

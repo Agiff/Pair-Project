@@ -14,7 +14,7 @@ module.exports = {
         allowNull: false
       },
       description: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
         allowNull: false
       },
       price: {
@@ -38,7 +38,9 @@ module.exports = {
         allowNull: false,
         references: {
           model: 'Users'
-        }
+        },
+        onDelete: 'cascade',
+        onUpdate: 'cascade'
       },
       createdAt: {
         allowNull: false,

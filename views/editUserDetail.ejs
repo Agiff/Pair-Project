@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Update User Detail</title>
+</head>
+<body>
+  <%- include('partials/_footer', { title: 'JualMobil.com' }) %> 
+  <h1>Update User Detail</h1>
+  <% const { firstName, lastName, formatYear, phoneNumber, address, balance, UserId, picture } = user; %>
+  <% if (firstName !== '-' && lastName !== '-') { %>
+    <form action="/updateUser/<%= userId %>" method="post">
+      <p>
+        <label for="firstName-input">First Name</label>
+        <input type="text" name="firstName" id="firstName-input" value="<%= firstName !== '-' ? firstName : '' %>">
+      </p>
+      <p>
+        <label for="lastName-input">Last Name</label>
+        <input type="text" name="lastName" id="lastName-input" value="<%= lastName !== '-' ? lastName : '' %>">
+      </p>
+      <p>
+        <label for="phoneNumber-input">Phone Number</label>
+        <input type="text" name="phoneNumber" id="phoneNumber-input" value="<%= phoneNumber !== '-' ? phoneNumber : '' %>">
+      </p>
+      <p>
+        <label for="birthDate-input">Date of Birth</label>
+        <input type="date" name="birthDate" id="birthDate-input" value="<%= formatYear %>">
+      </p>
+      <p>
+        <label for="address-input">Address Number</label>
+        <input type="text" name="address" id="address-input" value="<%= address !== '-' ? address : '' %>">
+      </p>
+      <button type="submit">Update</button>
+      <a href="/<%= role.toLowerCase() %>/<%= userId %>">Back</a>
+    </form>
+  <% } else { %>
+    <form action="/updateUser/<%= userId %>" method="post">
+      <p>
+        <label for="firstName-input">First Name</label>
+        <input type="text" name="firstName" id="firstName-input"">
+      </p>
+      <p>
+        <label for="lastName-input">Last Name</label>
+        <input type="text" name="lastName" id="lastName-input">
+      </p>
+      <p>
+        <label for="phoneNumber-input">Phone Number</label>
+        <input type="text" name="phoneNumber" id="phoneNumber-input">
+      </p>
+      <p>
+        <label for="birthDate-input">Date of Birth</label>
+        <input type="date" name="birthDate" id="birthDate-input">
+      </p>
+      <p>
+        <label for="address-input">Address Number</label>
+        <input type="text" name="address" id="address-input">
+      </p>
+      <button type="submit">Update</button>
+      <a href="/<%= role.toLowerCase() %>/<%= userId %>">Back</a>
+    </form>
+  <% } %>
+</body>
+</html>
