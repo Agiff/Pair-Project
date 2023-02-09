@@ -7,10 +7,9 @@
     <title>Home</title>
 </head>
 <body>
-    <%- include('partials/_navbar') %>
+    <%- include('partials/_navbar', { userId, role }) %>
     <%- include('partials/_footer', { title: 'JualMobil.com' }) %> 
     <br>
-    <% //console.log(getHome) %>
     <table border="1">
         <thead>
             <tr>
@@ -36,5 +35,6 @@
             <% }) %>
         </tbody>
     </table>
+    <br>
 </body>
 </html>

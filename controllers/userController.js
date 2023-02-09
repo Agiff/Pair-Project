@@ -5,12 +5,14 @@ const { currencyFormat } = require('../helper');
 
 class UserController {
   static getHome(req, res) {
+    const { userId, role } = req.session;
+
     Product.findAll({
         include: {
             model: User
         }
     })
-        .then(getHome => res.render('home', { getHome, currencyFormat }))
+        .then(getHome => res.render('home', { getHome, currencyFormat, userId, role }))
         .catch(err => res.send(err))
   }
 
@@ -23,7 +25,6 @@ class UserController {
 
     User.create({ email, password, role })
       .then(createdUser => {
-        console.log(createdUser);
         res.redirect('/login');
       })
       .catch(err => res.send(err));
