@@ -2,6 +2,16 @@ const { User, UserDetail, Product, Category } = require('../models');
 const bcrypt = require('bcryptjs');
 
 class Controller {
+  static getHome(req, res) {
+    Product.findAll({
+        include: {
+            model: User
+        }
+    })
+        .then(getHome => res.render('home', { getHome }))
+        .catch(err => res.send(err))
+  }
+
   static showRegister(req, res) {
     res.render('register');
   }
