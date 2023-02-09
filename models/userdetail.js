@@ -19,11 +19,67 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   UserDetail.init({
-    firstName: DataTypes.STRING,
-    lastName: DataTypes.STRING,
-    birthDate: DataTypes.DATE,
-    phoneNumber: DataTypes.INTEGER,
-    address: DataTypes.STRING,
+    firstName: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'First Name cannot be null'
+        },
+        notEmpty: {
+          msg: 'First Name cannot be empty'
+        }
+      }
+    },
+    lastName: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Last Name cannot be null'
+        },
+        notEmpty: {
+          msg: 'Last Name cannot be empty'
+        }
+      }
+    },
+    birthDate: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Date of Birth cannot be null'
+        },
+        notEmpty: {
+          msg: 'Date of Birth cannot be empty'
+        }
+      }
+    },
+    phoneNumber: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+      validate: {
+        notNull: {
+          msg: 'Phone Number cannot be null'
+        },
+        notEmpty: {
+          msg: 'Phone Number cannot be empty'
+        }
+      }
+    },
+    address: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Address cannot be null'
+        },
+        notEmpty: {
+          msg: 'Address cannot be empty'
+        }
+      }
+    },
     balance: DataTypes.BIGINT,
     UserId: DataTypes.INTEGER,
     picture: DataTypes.STRING

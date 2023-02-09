@@ -25,7 +25,8 @@ class UserController {
   }
 
   static showRegister(req, res) {
-    res.render('register');
+    const { errors } = req.query;
+    res.render('register', { errors });
   }
 
   static createUser(req, res) {
@@ -40,7 +41,16 @@ class UserController {
         return UserDetail.create({ firstName, lastName, phoneNumber, birthDate, address, UserId: id })
       })
       .then(() => res.redirect('/login'))
-      .catch(err => res.send(err));
+      .catch(err => {
+        if (err.name === 'SequelizeValidationError') {
+          const errors = err.errors.map(({message}) => {
+            return message;
+          })
+          res.redirect(`/register?errors=${errors}`)
+        } else {
+          res.send(err);
+        }
+      });
   }
 
   static showLogin(req, res) {
