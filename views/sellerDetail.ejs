@@ -9,51 +9,65 @@
 <body>
   <h1>Seller Profile</h1>
   <% const { firstName, lastName, age, phoneNumber, address, balance, UserId, picture } = seller.UserDetail %>
-  <h2>Welcome, <%= firstName %> <%= lastName %>!</h2>
-  <img src="<%= picture %>">
-  <br><br>
-  <h3>Your information</h3>
-  <p>Age: <%= age %></p>
-  <p>Phone Number: <%= phoneNumber %></p>
-  <p>Address: <%= address %></p>
-  <p>Balance: <%= balance %></p>
-  <a href="/seller/product/add"><button>Add Product</button></a>
-  <br>
+  <% if (firstName !== '-' && lastName !== '-') { %>
+    <h2>Welcome, <%= firstName %> <%= lastName %>!</h2>
+    <img src="<%= picture %>">
+    <br><br>
+    <a href="/updateUser/<%= sellerId %>"><button>Update Profile</button></a>
+    <h3>Your information</h3>
+    <p>Age: <%= age %></p>
+    <p>Phone Number: <%= phoneNumber !== '-' ? phoneNumber : '' %></p>
+    <p>Address: <%= address !== '-' ? address : '' %></p>
+    <p>Balance: <%= balance %></p>
+  <% } else { %>
+    <h2>Welcome to our Shop!</h2>
+    <p>Please consider updating your profile</p>
+    <a href="/updateUser/<%= sellerId %>"><button>Update Profile</button></a>
+  <% } %>
   <% if (deleted) { %>
     <p style="color: red;"><%= deleted %></p>
   <% } %>
   <br>
-  <table border="1">
-    <thead>
-        <tr>
-            <td>No.</td>
-            <td>Image</td>
-            <td>Name</td>
-            <td>Type</td>
-            <td>Brand</td>
-            <td>Price</td>
-            <td>Seller</td>
-            <td>Action</td>
-        </tr>
-    </thead>
-    <tbody>
-        <% products.forEach((el, index) => { %>
-            <% let {id, name, description, price, brand, image, CategoryId, UserId} = el.dataValues %>
+  <% if (products.length > 0) { %>
+    <a href="/seller/product/add"><button>Add Product</button></a>
+    <br>
+    <table border="1">
+        <thead>
             <tr>
-                <td><%= ++index %></td>
-                <td><img src="<%= image %>" alt=""></td>
-                <td><a href="/product/<%= id %>"><%= name %></a></td>
-                <td><%= el.Category.dataValues.name %></td>
-                <td><%= brand %></td>
-                <td><%= currencyFormat(price) %></td>
-                <td><a href="/?search=byBrand&param=<%= brand %>">Showroom <%= brand %></a></td>
-                <td>
-                    <a href="/seller/product/<%= id %>/edit">Edit</a>
-                    <a href="/seller/product/<%= id %>/delete">Delete</a>
-                </td>
+                <td>No.</td>
+                <td>Image</td>
+                <td>Name</td>
+                <td>Type</td>
+                <td>Brand</td>
+                <td>Price</td>
+                <td>Seller</td>
+                <td>Action</td>
             </tr>
-        <% }) %>
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            <% products.forEach((el, index) => { %>
+                <% let {id, name, description, price, brand, image, CategoryId, UserId} = el.dataValues %>
+                <tr>
+                    <td><%= ++index %></td>
+                    <td><img src="<%= image %>" alt=""></td>
+                    <td><a href="/product/<%= id %>"><%= name %></a></td>
+                    <td><%= el.Category.dataValues.name %></td>
+                    <td><%= brand %></td>
+                    <td><%= currencyFormat(price) %></td>
+                    <td><a href="/?search=byBrand&param=<%= brand %>">Showroom <%= brand %></a></td>
+                    <td>
+                        <a href="/seller/product/<%= id %>/edit">Edit</a>
+                        <a href="/seller/product/<%= id %>/delete">Delete</a>
+                    </td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+  <% } else { %>
+    <br>
+    <p>You don't have any product on the list.</p>
+    <a href="/seller/product/add"><button>Add Product</button></a>
+    <br>
+  <% } %>
 </body>
 </html>

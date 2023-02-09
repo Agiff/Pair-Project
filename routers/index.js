@@ -11,6 +11,8 @@ router.post('/register', UserController.createUser);
 router.get('/login', UserController.showLogin);
 router.post('/login', UserController.login);
 router.get('/logout', UserController.logout);
+router.get('/updateUser/:id', UserController.showEditUserDetail);
+router.post('/updateUser/:id', UserController.updateUserDetail);
 
 router.use(customerRoutes);
 router.use(isLoggedIn, sellerRoutes);

@@ -8,6 +8,11 @@
 </head>
 <body>
   <h1>Add Product</h1>
+  <% if (errors) { %>
+    <% errors.split(',').forEach(el => { %>
+      <p style="color: red;"><%= el %></p>
+    <% }) %>
+  <% } %>
   <form action="/seller/product/add" method="post">
     <p>
       <label for="product-name-input">Name</label>
