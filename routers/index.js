@@ -1,9 +1,7 @@
 const router = require('express').Router()
 const Controller = require('../controllers');
 
-router.get('/', (req, res) => {
-  res.render('home')
-})
+router.get('/', Controller.getHome);
 
 router.get('/register', Controller.showRegister);
 router.post('/register', Controller.createUser);
