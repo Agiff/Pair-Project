@@ -1,5 +1,7 @@
-const { User, UserDetail, Product, Category } = require('../models');
 const bcrypt = require('bcryptjs');
+
+const { User, UserDetail, Product, Category } = require('../models');
+const { currencyFormat } = require('../helper');
 
 class CustomerController {
   static getHome(req, res) {
@@ -8,7 +10,7 @@ class CustomerController {
             model: User
         }
     })
-        .then(getHome => res.render('home', { getHome }))
+        .then(getHome => res.render('home', { getHome, currencyFormat }))
         .catch(err => res.send(err))
   }
 
