@@ -76,7 +76,7 @@ class CustomerController {
       }
     })
     .then(arr => {
-      console.log(`Deleteeeee`)
+      console.log(`Deleteeeee`, arr)
       let {cartId} = req.params
       return CartProduct.destroy({
         where: {
@@ -84,6 +84,7 @@ class CustomerController {
         }
       })
     })
+    .then()
     .then(success=> res.redirect(`/Customer/${userId}/cart`))
     .catch(err => {
       if(err.name === `custom`) return res.redirect(`/customer/${userId}/cart?errors=${err.msg}`)

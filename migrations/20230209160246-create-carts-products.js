@@ -2,7 +2,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
    up(queryInterface, Sequelize) {
-    return queryInterface.createTable('CartsProducts', {
+    return queryInterface.createTable('CartProducts', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -28,6 +28,6 @@ module.exports = {
     });
   },
    down(queryInterface, Sequelize) {
-    return queryInterface.dropTable('CartsProducts');
+    return queryInterface.dropTable('CartProducts');
   }
 };
