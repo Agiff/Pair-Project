@@ -1,10 +1,8 @@
 'use strict';
-
-const fs = require('fs');
-
+const fs = require('fs')
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  up (queryInterface, Sequelize) {
+  async up (queryInterface, Sequelize) {
     /**
      * Add seed commands here.
      *
@@ -14,22 +12,20 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-    const products = JSON.parse(fs.readFileSync('./data/products.json'))
+    const dataSeed = JSON.parse(fs.readFileSync('./data/transaction.json'))
     .map(el => {
-      delete el.UserId
-      el.createdAt = el.updatedAt = new Date();
       return el;
     })
-    return queryInterface.bulkInsert('Products', products, {});
+    return queryInterface.bulkInsert('Transactions', dataSeed, {});
   },
 
-  down (queryInterface, Sequelize) {
+  async down (queryInterface, Sequelize) {
     /**
      * Add commands to revert seed here.
      *
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    return queryInterface.bulkDelete('Products', null, {});
+    return queryInterface.bulkDelete('Transactions');
   }
 };

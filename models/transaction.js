@@ -1,0 +1,24 @@
+'use strict';
+const {
+  Model
+} = require('sequelize');
+module.exports = (sequelize, DataTypes) => {
+  class cart extends Model {}
+  cart.init({
+    UserId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: { model: 'Users', key: 'id' },
+    },
+    ProductId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: { model: 'Products', key: 'id' },
+    }
+  }, {
+    sequelize,
+    timestamps: false,
+    modelName: 'Transaction',
+  });
+  return cart;
+};
