@@ -36,7 +36,9 @@ module.exports = {
         allowNull: false,
         references: {
           model: 'Users'
-        }
+        },
+        onDelete: 'cascade',
+        onUpdate: 'cascade'
       },
       createdAt: {
         allowNull: false,
