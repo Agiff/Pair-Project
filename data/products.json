@@ -1,7 +1,7 @@
 [{
   "name": "Coachbuilder",
   "price": 8086150,
-  "image": "http://dummyimage.com/75x75.png/dddddd/000000",
+  "image": "http://dummyimage.com/70x20.png/dddddd/000000",
   "stock": 6,
   "brand": "Fird",
   "description": "Morbi non quam nec dui luctus rutrum. Nulla tellus. In sagittis dui vel nisl.",
@@ -9,7 +9,7 @@
 }, {
   "name": "3500 Club Coupe",
   "price": 89926211,
-  "image": "http://dummyimage.com/75x75.png/dddddd/000000",
+  "image": "http://dummyimage.com/70x20.png/dddddd/000000",
   "stock": 9,
   "brand": "Volkswigin",
   "description": "Suspendisse potenti. Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum.",
@@ -17,7 +17,7 @@
 }, {
   "name": "3 Series",
   "price": 5779075,
-  "image": "http://dummyimage.com/75x75.png/dddddd/000000",
+  "image": "http://dummyimage.com/70x20.png/dddddd/000000",
   "stock": 4,
   "brand": "Volkswigin",
   "description": "Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. ",
@@ -25,7 +25,7 @@
 }, {
   "name": "Skyhawk",
   "price": 52073426,
-  "image": "http://dummyimage.com/75x75.png/dddddd/000000",
+  "image": "http://dummyimage.com/70x20.png/dddddd/000000",
   "stock": 7,
   "brand": "Volkswigin",
   "description": "Proin risus. Praesent lectus. Vestibulum quam sapien, varius ut, blandit non, interdum in, ante.",
@@ -33,7 +33,7 @@
 }, {
   "name": "STS",
   "price": 39001049,
-  "image": "http://dummyimage.com/75x75.png/dddddd/000000",
+  "image": "http://dummyimage.com/70x20.png/dddddd/000000",
   "stock": 9,
   "brand": "Volkswigin",
   "description": "Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. ",
@@ -41,7 +41,7 @@
 }, {
   "name": "LeSabre",
   "price": 36758932,
-  "image": "http://dummyimage.com/75x75.png/dddddd/000000",
+  "image": "http://dummyimage.com/70x20.png/dddddd/000000",
   "stock": 2,
   "brand": "Fird",
   "description": "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae. ",
@@ -49,7 +49,7 @@
 }, {
   "name": "Silverado 3500",
   "price": 58777864,
-  "image": "http://dummyimage.com/75x75.png/dddddd/000000",
+  "image": "http://dummyimage.com/70x20.png/dddddd/000000",
   "stock": 8,
   "brand": "Fird",
   "description": "Donec dapibus. Duis at velit eu est congue elementum. ",
@@ -57,7 +57,7 @@
 }, {
   "name": "Rendezvous",
   "price": 40106494,
-  "image": "http://dummyimage.com/75x75.png/dddddd/000000",
+  "image": "http://dummyimage.com/70x20.png/dddddd/000000",
   "stock": 7,
   "brand": "Volkswigin",
   "description": "Maecenas ut massa quis augue luctus tincidunt.",
@@ -65,7 +65,7 @@
 }, {
   "name": "Safari",
   "price": 93321378,
-  "image": "http://dummyimage.com/75x75.png/dddddd/000000",
+  "image": "http://dummyimage.com/70x20.png/dddddd/000000",
   "stock": 2,
   "brand": "Hondi",
   "description": "Nulla ut erat id mauris vulputate elementum. Nullam varius. ",
@@ -73,7 +73,7 @@
 }, {
   "name": "Town & Country",
   "price": 33669857,
-  "image": "http://dummyimage.com/75x75.png/dddddd/000000",
+  "image": "http://dummyimage.com/70x20.png/dddddd/000000",
   "stock": 9,
   "brand": "Hondi",
   "description": "Nullam molestie nibh in lectus. Pellentesque at nulla.",

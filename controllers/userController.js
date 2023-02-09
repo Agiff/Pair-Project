@@ -1,13 +1,13 @@
 const bcrypt = require('bcryptjs');
 
-const { User, Product } = require('../models');
+const { User, Product, Category } = require('../models');
 const { currencyFormat } = require('../helper');
 
 class UserController {
   static getHome(req, res) {
     Product.findAll({
         include: {
-            model: User
+            model: Category
         }
     })
         .then(getHome => res.render('home', { getHome, currencyFormat }))
