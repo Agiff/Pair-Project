@@ -22,7 +22,7 @@ class SellerController {
         })
       })
       .then(products => {
-        res.render('sellerDetail', { seller, currencyFormat, deleted, products });
+        res.render('sellerDetail', { seller, currencyFormat, deleted, products, sellerId });
       })
       .catch(err => res.send(err));
   }
